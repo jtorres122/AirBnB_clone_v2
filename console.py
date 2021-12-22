@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Console Module """
+from abc import abstractclassmethod
 import cmd
 import sys
 from models.base_model import BaseModel
@@ -115,13 +116,23 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
+        new_dict = {}
+        args_list = args.split(' ')
+        for idx, string in enumerate(args_list):
+            if idx >= 1:
+                params = string.split('=')
+                new_dict[params[0]] = params[1]
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif args_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[args_list[0]]()
+        for k, v in new_dict.items():
+            key = k
+            value = v.replace('"', '').replace('_', ' ')
+            setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
         storage.save()
