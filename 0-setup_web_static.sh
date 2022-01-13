@@ -4,7 +4,7 @@
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-mkdir -p ~/data/web_static/{releases/test,shared}
+mkdir -p /data/web_static/{releases/test,shared}
 echo "Deployment of web_static" > /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -hR ubuntu:ubuntu /data/
