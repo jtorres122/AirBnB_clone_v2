@@ -4,7 +4,8 @@ from flask import Flask
 
 
 app = Flask(__name__)
-app.strict_slashes = False
+app.url_map.strict_slashes = False
+
 @app.route('/')
 def hello():
     '''Function returns msg when web app is curled'''
