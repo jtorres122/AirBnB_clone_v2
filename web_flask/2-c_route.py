@@ -20,7 +20,7 @@ def hello_hbnb():
 
 
 @app.route('/c/<text>')
-def hello_hbnb(text):
+def hello_c(text):
     '''Function returns msg when web app is curled'''
     return 'C ' + str(text).replace("_", " ")
 
